@@ -3,12 +3,11 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galleryEl = document.querySelector('.gallery');
 const loaderEl = document.querySelector('.loader');
+const loadMoreBtn = document.querySelector('.load-more');
 
 const lightbox = new SimpleLightbox('.gallery a');
 
 export function createGallery(images) {
-  const galleryEl = document.querySelector('.gallery');
-
   const markup = images
     .map(
       ({
@@ -21,16 +20,16 @@ export function createGallery(images) {
         downloads,
       }) =>
         `<li>
-        <a href="${largeImageURL}">
-          <img src="${webformatURL}" alt="${tags}" />
-        </a>
-        <div class="info">
-          <p><b>Likes:</b> <span>${likes}</span></p>
-          <p><b>Views:</b> <span>${views}</span></p>
-          <p><b>Comments:</b> <span>${comments}</span></p>
-          <p><b>Downloads:</b> <span>${downloads}</span></p>
-        </div>
-      </li>`
+      <a href="${largeImageURL}">
+        <img src="${webformatURL}" alt="${tags}" />
+      </a>
+      <div class="info">
+        <p><b>Likes:</b> <span>${likes}</span></p>
+        <p><b>Views:</b> <span>${views}</span></p>
+        <p><b>Comments:</b> <span>${comments}</span></p>
+        <p><b>Downloads:</b> <span>${downloads}</span></p>
+      </div>
+    </li>`
     )
     .join('');
 
@@ -43,11 +42,17 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  const loaderEl = document.querySelector('.loader');
-  if (loaderEl) loaderEl.classList.add('visible');
+  loaderEl.classList.add('visible');
 }
 
 export function hideLoader() {
-  const loaderEl = document.querySelector('.loader');
-  if (loaderEl) loaderEl.classList.remove('visible');
+  loaderEl.classList.remove('visible');
+}
+
+export function showLoadMoreButton() {
+  loadMoreBtn.classList.add('visible');
+}
+
+export function hideLoadMoreButton() {
+  loadMoreBtn.classList.remove('visible');
 }
